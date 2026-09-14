@@ -12,6 +12,7 @@
 #include "IO.h"
 #include "timer.h"
 #include "PWM.h"
+#include "ADC.h"
 
 
 
@@ -24,6 +25,7 @@ InitIO();
 InitTimer23();
 InitTimer1();
 InitPWM();
+InitADC1();
 
 
 LED_BLANCHE_1 = 1;
@@ -42,5 +44,11 @@ while(1)
     LED_ORANGE_1 = ! LED_ORANGE_1 ;
     LED_ROUGE_1 = ! LED_ROUGE_1 ; 
     LED_VERTE_1 = ! LED_VERTE_1;*/
+    if(ADCIsConversionFinished()==1){
+        unsigned int * result = ADCGetResult();
+        unsigned int ADCValue0=result[0], ADCValue1=result[1], ADCValue2=result[2];
+        ADCClearConversionFinishedFlag();
+    }
+    
     } // fin main
 }
