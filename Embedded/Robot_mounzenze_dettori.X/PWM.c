@@ -2,7 +2,10 @@
 #include "IO.h"
 #include "PWM.h"
 #include "Robot.h"
+#include "Toolbox.h"
 #define PWMPER 24.0
+
+float acceleration = 5;
 
 void InitPWM(void) {
     PTCON2bits.PCLKDIV = 0b000; //Divide by 1
@@ -49,6 +52,16 @@ void PWMSetSpeed(float vitesseEnPourcents, float moteur) {
     }
 }
 
+void PWMSetSpeedConsigne(float vitesseEnPourcents, float moteur) {
+    if (moteur == MOTEUR_DROIT) {
+        robotState.vitesseDroiteConsigne = vitesseEnPourcents;
+    } else {
+        if (moteur == MOTEUR_GAUCHE) {
+            robotState.vitesseGaucheConsigne = vitesseEnPourcents;
+        }
+    }
+}
+
 void PWMUpdateSpeed() {
     // Cette fonction est appelee sur timer et permet de suivre des rampes d acceleration
     if (robotState.vitesseGaucheCommandeCourante < robotState.vitesseGaucheConsigne)
@@ -63,9 +76,10 @@ void PWMUpdateSpeed() {
         PDC1 = robotState.vitesseGaucheCommandeCourante * PWMPER + talon;
         SDC1 = talon;
     } else {
+        PDC1 = talon;
+        SDC1 = -robotState.vitesseGaucheCommandeCourante * PWMPER + talon;
     }
-    PDC1 = talon;
-    SDC1 = -robotState.vitesseGaucheCommandeCourante * PWMPER + talon;
+
     if (robotState.vitesseDroiteCommandeCourante < robotState.vitesseDroiteConsigne)
         robotState.vitesseDroiteCommandeCourante = Min(
             robotState.vitesseDroiteCommandeCourante + acceleration,
