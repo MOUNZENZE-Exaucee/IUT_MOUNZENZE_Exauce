@@ -11,6 +11,8 @@
 #define MOTEUR_GAUCHE 1
 void InitPWM(void);
 void PWMSetSpeed(float vitesseEnPourcents, float moteur);
+void PWMUpdateSpeed();
+float acceleration=5 ;
 
 #ifdef	__cplusplus
 extern "C" {
