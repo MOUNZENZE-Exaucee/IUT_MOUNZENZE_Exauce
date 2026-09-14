@@ -2,15 +2,15 @@
 
 manifest_file_version: 1.0.0
 project: Robot_mounzenze_dettori
-creation_date: 2026-09-08T14:48:01.032+02:00[Europe/Paris]
+creation_date: 2026-09-14T08:19:06.118+02:00[Europe/Paris]
 operating_system: Windows 11
 mcc_mode: IDE
-mcc_mode_version: v6.35
+mcc_mode_version: v6.25
 device_name: dsPIC33EP512MU814
-compiler: XC16 2.10
-mcc_version: 5.7.0
-mcc_core_version: 5.9.0
-content_manager_version: 7.0.0
+compiler: XCDSC 3.30
+mcc_version: 5.6.3
+mcc_core_version: 5.8.3
+content_manager_version: 6.0.3
 is_mcc_offline: false
 is_using_prerelease_versions: false
 mcc_content_registries: https://registry.npmjs.org/

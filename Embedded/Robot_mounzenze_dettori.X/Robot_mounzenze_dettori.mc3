@@ -1,4 +1,4 @@
-<config configName="default" projectName="Robot_mounzenze_dettori" configVersion="1.3" device="dsPIC33EP512MU814" deviceLibraryClass="com.microchip.mcc.mcu16.Mcu16PeripheralLibrary" coreVersion="5.9.0">
+<config configName="default" projectName="Robot_mounzenze_dettori" configVersion="1.3" device="dsPIC33EP512MU814" deviceLibraryClass="com.microchip.mcc.mcu16.Mcu16PeripheralLibrary" coreVersion="5.8.3">
    <usedPackages class="java.util.ArrayList"/>
    <usedClasses class="java.util.TreeMap">
       <entry>

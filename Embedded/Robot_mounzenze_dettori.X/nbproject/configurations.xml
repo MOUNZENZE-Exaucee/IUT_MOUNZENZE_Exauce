@@ -7,6 +7,9 @@
       <itemPath>ChipConfig.h</itemPath>
       <itemPath>IO.h</itemPath>
       <itemPath>timer.h</itemPath>
+      <itemPath>Robot.h</itemPath>
+      <itemPath>Toolbox.h</itemPath>
+      <itemPath>PWM.h</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
@@ -25,6 +28,9 @@
       <itemPath>ChipConfig.c</itemPath>
       <itemPath>IO.c</itemPath>
       <itemPath>timer.c</itemPath>
+      <itemPath>Robot.c</itemPath>
+      <itemPath>ToolBox.c</itemPath>
+      <itemPath>PWM.c</itemPath>
     </logicalFolder>
   </logicalFolder>
   <projectmakefile>Makefile</projectmakefile>
@@ -41,7 +47,7 @@
         <platform>3</platform>
       </toolsSet>
       <packs>
-        <pack name="dsPIC33E-GM-GP-MC-GU-MU_DFP" vendor="Microchip" version="1.7.401"/>
+        <pack name="dsPIC33E-GM-GP-MC-GU-MU_DFP" vendor="Microchip" version="1.6.297"/>
       </packs>
       <ScriptingSettings>
       </ScriptingSettings>
@@ -143,14 +149,11 @@
         <property key="boot-flash" value="no_flash"/>
         <property key="boot-ram" value="no_ram"/>
         <property key="boot-write-protect" value="no_write_protect"/>
-        <property key="create-vtable" value="true"/>
         <property key="enable-check-sections" value="false"/>
         <property key="enable-data-init" value="true"/>
+        <property key="enable-default-isr" value="true"/>
         <property key="enable-handles" value="true"/>
         <property key="enable-pack-data" value="true"/>
-        <property key="enable-vtable-1" value="false"/>
-        <property key="enable-vtable-2" value="false"/>
-        <property key="enable-vtable-3" value="false"/>
         <property key="extra-lib-directories" value=""/>
         <property key="fill-flash-options-addr" value=""/>
         <property key="fill-flash-options-const" value=""/>
@@ -159,7 +162,6 @@
         <property key="fill-flash-options-increment" value=""/>
         <property key="fill-flash-options-seq" value=""/>
         <property key="fill-flash-options-what" value="0"/>
-        <property key="fill-vtable" value="true"/>
         <property key="general-code-protect" value="no_code_protect"/>
         <property key="general-write-protect" value="no_write_protect"/>
         <property key="generate-cross-reference-file" value="false"/>
@@ -186,15 +188,6 @@
         <property key="stack-size" value="16"/>
         <property key="symbol-stripping" value=""/>
         <property key="trace-symbols" value=""/>
-        <property key="vtable-address-1" value=""/>
-        <property key="vtable-address-2" value=""/>
-        <property key="vtable-address-3" value=""/>
-        <property key="vtable-number-1" value="1"/>
-        <property key="vtable-number-2" value="0"/>
-        <property key="vtable-number-3" value="0"/>
-        <property key="vtable-type-1" value="--ivt="/>
-        <property key="vtable-type-2" value="--ivt="/>
-        <property key="vtable-type-3" value="--ivt="/>
         <property key="warn-section-align" value="false"/>
       </C30-LD>
       <C30Global>
@@ -440,6 +433,8 @@
         <property key="memories.programmemory" value="true"/>
         <property key="memories.programmemory.ranges" value="0-7fffff"/>
         <property key="poweroptions.powerenable" value="false"/>
+        <property key="programmerToGoFilePath"
+                  value="C:/Github/IUT_MOUNZENZE_Exauce/Embedded/Robot_mounzenze_dettori.X/debug/default/Robot_mounzenze_dettori_ptg"/>
         <property key="programoptions.donoteraseauxmem" value="false"/>
         <property key="programoptions.eraseb4program" value="true"/>
         <property key="programoptions.pgcconfig" value="pull down"/>
