@@ -22,7 +22,7 @@ int main(void) {
     InitOscillator();
     /***********************************************************************************************/// Configuration des input et output (IO)
     InitIO();
-    SetFreqTimer1(FREQUENCE);
+    
     InitTimer23();
     InitTimer1();
     InitPWM();
@@ -58,7 +58,7 @@ int main(void) {
             float tensionADC0 = (3.3 * ADCValue0) / 4095;
             float tensionADC1 = (3.3 * ADCValue1) / 4095;
             float tensionADC2 = (3.3 * ADCValue2) / 4095;*/
-            
+            /*
             if (robotState.distanceTelemetreGauche >=30) {
                 LED_BLANCHE_1 = 1;
             } else {
@@ -76,7 +76,7 @@ int main(void) {
             }
             
             //ADCClearConversionFinishedFlag();
-
+            */
         }
 
 

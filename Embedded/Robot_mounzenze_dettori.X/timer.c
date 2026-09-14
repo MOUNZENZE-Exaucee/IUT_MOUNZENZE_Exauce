@@ -7,6 +7,7 @@
 //Initialisation d?un timer 16 bits
 
 void InitTimer1(void) {
+    SetFreqTimer1(FREQUENCE);
     //Timer1 pour horodater les mesures (1ms)
     T1CONbits.TON = 0; // Disable Timer
     //T1CONbits.TCKPS = 0b10; //Prescaler
@@ -27,6 +28,7 @@ void __attribute__((interrupt, no_auto_psv)) _T1Interrupt(void) {
     //LED_BLANCHE_1 = !LED_BLANCHE_1;
     PWMUpdateSpeed();
     ADC1StartConversionSequence();
+    LED_BLEUE_1=!LED_BLEUE_1;
 
 }
 //Initialisation d?un timer 32 bits
