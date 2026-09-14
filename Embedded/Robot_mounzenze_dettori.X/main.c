@@ -13,42 +13,70 @@
 #include "timer.h"
 #include "PWM.h"
 #include "ADC.h"
+#include "Robot.h"
+
+int main(void) {
+    /***********************************************************************************************///Initialisation oscillateur
+    InitOscillator();
+    /***********************************************************************************************/// Configuration des input et output (IO)
+    InitIO();
+
+    InitTimer23();
+    InitTimer1();
+    InitPWM();
+    InitADC1();
 
 
+    LED_BLANCHE_1 = 1;
+    LED_BLEUE_1 = 1;
+    LED_ORANGE_1 = 1;
+    LED_ROUGE_1 = 1;
+    LED_VERTE_1 = 1;
+    /***********************************************************************************************/
+    // Boucle Principale
+    /***********************************************************************************************/
 
-int main (void){
-/***********************************************************************************************///Initialisation oscillateur
-InitOscillator();
-/***********************************************************************************************/// Configuration des input et output (IO)
-InitIO();
+    while (1) {
+        /*LED_BLANCHE_1 = !LED_BLANCHE_1;
+        LED_BLEUE_1 = !LED_BLEUE_1;
+        LED_ORANGE_1 = ! LED_ORANGE_1 ;
+        LED_ROUGE_1 = ! LED_ROUGE_1 ; 
+        LED_VERTE_1 = ! LED_VERTE_1;*/
+        ADC1StartConversionSequence();
+        if (ADCIsConversionFinished() == 1) {
+            unsigned int * result = ADCGetResult();
+            ADCClearConversionFinishedFlag();
+            float volts = ((float) result [0])* 3.3 / 4096;
+            robotState.distanceTelemetreGauche = 34 / volts - 5;
+            volts = ((float) result [1])* 3.3 / 4096;
+            robotState.distanceTelemetreCentre = 34 / volts - 5;
+            volts = ((float) result [2])* 3.3 / 4096;
+            robotState.distanceTelemetreDroit = 34 / volts - 5;
+            /*unsigned int ADCValue0 = result[0], ADCValue1 = result[1], ADCValue2 = result[2];
+            float tensionADC0 = (3.3 * ADCValue0) / 4095;
+            float tensionADC1 = (3.3 * ADCValue1) / 4095;
+            float tensionADC2 = (3.3 * ADCValue2) / 4095;
+            
+            if (tensionADC0 <= 0.82) {
+                LED_BLANCHE_1 = 1;
+            } else {
+                LED_BLANCHE_1 = 0;
+            }
+            if (tensionADC1 <= 0.82) {
+                LED_BLEUE_1 = 1;
+            } else {
+                LED_BLEUE_1 = 0;
+            }
+            if (tensionADC2 <= 0.82) {
+                LED_ORANGE_1 = 1;
+            } else {
+                LED_ORANGE_1 = 0;
+            }
+            
+            ADCClearConversionFinishedFlag();*/
 
-InitTimer23();
-InitTimer1();
-InitPWM();
-InitADC1();
+        }
 
 
-LED_BLANCHE_1 = 1;
-LED_BLEUE_1 = 1;
-LED_ORANGE_1 = 1;
-LED_ROUGE_1 = 1;
-LED_VERTE_1 = 1;
-/***********************************************************************************************/
-// Boucle Principale
-/***********************************************************************************************/
-
-while(1)
-    {
-    /*LED_BLANCHE_1 = !LED_BLANCHE_1;
-    LED_BLEUE_1 = !LED_BLEUE_1;
-    LED_ORANGE_1 = ! LED_ORANGE_1 ;
-    LED_ROUGE_1 = ! LED_ROUGE_1 ; 
-    LED_VERTE_1 = ! LED_VERTE_1;*/
-    if(ADCIsConversionFinished()==1){
-        unsigned int * result = ADCGetResult();
-        unsigned int ADCValue0=result[0], ADCValue1=result[1], ADCValue2=result[2];
-        ADCClearConversionFinishedFlag();
-    }
-    
     } // fin main
 }

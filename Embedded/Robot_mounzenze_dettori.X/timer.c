@@ -51,7 +51,7 @@ unsigned char toggle = 0;
 
 void __attribute__((interrupt, no_auto_psv)) _T3Interrupt(void) {
     IFS0bits.T3IF = 0; // Clear Timer3 Interrupt Flag
-    if (toggle == 0) {
+    /*if (toggle == 0) {
         PWMSetSpeedConsigne(20, MOTEUR_DROIT);
         PWMSetSpeedConsigne(20, MOTEUR_GAUCHE);
         toggle = 1;
@@ -60,6 +60,6 @@ void __attribute__((interrupt, no_auto_psv)) _T3Interrupt(void) {
         PWMSetSpeedConsigne(-20, MOTEUR_GAUCHE);
         toggle = 0;
 
-    }
+    }*/
 }
 
