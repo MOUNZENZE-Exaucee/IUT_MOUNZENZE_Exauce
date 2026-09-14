@@ -3,6 +3,7 @@
 #include "PWM.h"
 #include "Robot.h"
 #include "Toolbox.h"
+#include "main.h"
 #define PWMPER 24.0
 
 float acceleration = 5;
@@ -95,6 +96,6 @@ void PWMUpdateSpeed() {
         PDC2 = talon;
         SDC2 = -robotState.vitesseDroiteCommandeCourante * PWMPER + talon;
     }
-}
+} 
 
 

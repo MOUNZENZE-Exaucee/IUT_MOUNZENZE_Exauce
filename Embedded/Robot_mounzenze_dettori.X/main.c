@@ -14,13 +14,15 @@
 #include "PWM.h"
 #include "ADC.h"
 #include "Robot.h"
+#include "main.h"
+
 
 int main(void) {
     /***********************************************************************************************///Initialisation oscillateur
     InitOscillator();
     /***********************************************************************************************/// Configuration des input et output (IO)
     InitIO();
-
+    SetFreqTimer1(FREQUENCE);
     InitTimer23();
     InitTimer1();
     InitPWM();
@@ -55,25 +57,25 @@ int main(void) {
             /*unsigned int ADCValue0 = result[0], ADCValue1 = result[1], ADCValue2 = result[2];
             float tensionADC0 = (3.3 * ADCValue0) / 4095;
             float tensionADC1 = (3.3 * ADCValue1) / 4095;
-            float tensionADC2 = (3.3 * ADCValue2) / 4095;
+            float tensionADC2 = (3.3 * ADCValue2) / 4095;*/
             
-            if (tensionADC0 <= 0.82) {
+            if (robotState.distanceTelemetreGauche >=30) {
                 LED_BLANCHE_1 = 1;
             } else {
                 LED_BLANCHE_1 = 0;
             }
-            if (tensionADC1 <= 0.82) {
+            if (robotState.distanceTelemetreCentre >=30) {
                 LED_BLEUE_1 = 1;
             } else {
                 LED_BLEUE_1 = 0;
             }
-            if (tensionADC2 <= 0.82) {
+            if (robotState.distanceTelemetreDroit >=30) {
                 LED_ORANGE_1 = 1;
             } else {
                 LED_ORANGE_1 = 0;
             }
             
-            ADCClearConversionFinishedFlag();*/
+            //ADCClearConversionFinishedFlag();
 
         }
 
