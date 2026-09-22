@@ -51,30 +51,34 @@ int main(void) {
             unsigned int * result = ADCGetResult();
             ADCClearConversionFinishedFlag();
             float volts = ((float) result [0])* 3.3 / 4096;
-            robotState.distanceTelemetreGauche = 34 / volts - 5;
+            robotState.distanceTelemetreExGauche = 34 / volts - 5;
             volts = ((float) result [1])* 3.3 / 4096;
-            robotState.distanceTelemetreCentre = 34 / volts - 5;
+            robotState.distanceTelemetreGauche = 34 / volts - 5;
             volts = ((float) result [2])* 3.3 / 4096;
+            robotState.distanceTelemetreCentre = 34 / volts - 5;
+            volts = ((float) result [3])* 3.3 / 4096;
             robotState.distanceTelemetreDroit = 34 / volts - 5;
+            volts = ((float) result [4])* 3.3 / 4096;
+            robotState.distanceTelemetreExDroit = 34 / volts - 5;
             /*unsigned int ADCValue0 = result[0], ADCValue1 = result[1], ADCValue2 = result[2];
             float tensionADC0 = (3.3 * ADCValue0) / 4095;
             float tensionADC1 = (3.3 * ADCValue1) / 4095;
             float tensionADC2 = (3.3 * ADCValue2) / 4095;*/
 
             if (robotState.distanceTelemetreGauche >= 30) {
-                LED_BLANCHE_1 = 1;
+                LED_BLEUE_1 = 0;
             } else {
-                LED_BLANCHE_1 = 0;
+                LED_BLEUE_1 = 1;
             }
             if (robotState.distanceTelemetreCentre >= 30) {
-                LED_BLEUE_1 = 1;
+                LED_ORANGE_1 = 0;
             } else {
-                LED_BLEUE_1 = 0;
+                LED_ORANGE_1 = 1;
             }
             if (robotState.distanceTelemetreDroit >= 30) {
-                LED_ORANGE_1 = 1;
+                LED_ROUGE_1 = 0;
             } else {
-                LED_ORANGE_1 = 0;
+                LED_ROUGE_1 = 1;
             }
 
             ADCClearConversionFinishedFlag();
@@ -98,7 +102,7 @@ void OperatingSystemLoop(void) {
                 stateRobot = STATE_AVANCE;
             break;
         case STATE_AVANCE:
-            PWMSetSpeedConsigne(30, MOTEUR_DROIT);
+            PWMSetSpeedConsigne(-30, MOTEUR_DROIT);
             PWMSetSpeedConsigne(30, MOTEUR_GAUCHE);
             stateRobot = STATE_AVANCE_EN_COURS;
             break;
@@ -106,7 +110,7 @@ void OperatingSystemLoop(void) {
             SetNextRobotStateInAutomaticMode();
             break;
         case STATE_TOURNE_GAUCHE:
-            PWMSetSpeedConsigne(30, MOTEUR_DROIT);
+            PWMSetSpeedConsigne(-20, MOTEUR_DROIT);
             PWMSetSpeedConsigne(0, MOTEUR_GAUCHE);
             stateRobot = STATE_TOURNE_GAUCHE_EN_COURS;
             break;
@@ -115,7 +119,7 @@ void OperatingSystemLoop(void) {
             break;
         case STATE_TOURNE_DROITE:
             PWMSetSpeedConsigne(0, MOTEUR_DROIT);
-            PWMSetSpeedConsigne(30, MOTEUR_GAUCHE);
+            PWMSetSpeedConsigne(20, MOTEUR_GAUCHE);
             stateRobot = STATE_TOURNE_DROITE_EN_COURS;
             break;
         case STATE_TOURNE_DROITE_EN_COURS:
@@ -123,7 +127,7 @@ void OperatingSystemLoop(void) {
             break;
         case STATE_TOURNE_SUR_PLACE_GAUCHE:
             PWMSetSpeedConsigne(15, MOTEUR_DROIT);
-            PWMSetSpeedConsigne(-15, MOTEUR_GAUCHE);
+            PWMSetSpeedConsigne(15, MOTEUR_GAUCHE);
             stateRobot = STATE_TOURNE_SUR_PLACE_GAUCHE_EN_COURS;
             break;
         case STATE_TOURNE_SUR_PLACE_GAUCHE_EN_COURS:
@@ -131,7 +135,7 @@ void OperatingSystemLoop(void) {
             break;
         case STATE_TOURNE_SUR_PLACE_DROITE:
             PWMSetSpeedConsigne(-15, MOTEUR_DROIT);
-            PWMSetSpeedConsigne(15, MOTEUR_GAUCHE);
+            PWMSetSpeedConsigne(-15, MOTEUR_GAUCHE);
             stateRobot = STATE_TOURNE_SUR_PLACE_DROITE_EN_COURS;
             break;
         case STATE_TOURNE_SUR_PLACE_DROITE_EN_COURS:
