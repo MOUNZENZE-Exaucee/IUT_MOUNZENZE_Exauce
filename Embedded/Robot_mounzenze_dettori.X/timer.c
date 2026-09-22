@@ -28,7 +28,7 @@ void __attribute__((interrupt, no_auto_psv)) _T1Interrupt(void) {
     //LED_BLANCHE_1 = !LED_BLANCHE_1;
     PWMUpdateSpeed();
     ADC1StartConversionSequence();
-    LED_BLEUE_1=!LED_BLEUE_1;
+    //LED_ROUGE_1=!LED_ROUGE_1;
 
 }
 //Initialisation d?un timer 32 bits
@@ -88,6 +88,8 @@ void __attribute__((interrupt, no_auto_psv)) _T4Interrupt(void) {
     //PWMUpdateSpeed();
     //ADC1StartConversionSequence();
     //LED_ROUGE_1=!LED_ROUGE_1;
+    timestamp=timestamp+1;
+    OperatingSystemLoop();
 
 }
 
