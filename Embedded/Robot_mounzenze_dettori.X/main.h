@@ -8,7 +8,9 @@
 #ifndef MAIN_H
 #define	MAIN_H
 #define FCY 60000000
-#define FREQUENCE 100
+#define FREQUENCE1 100
+#define FREQUENCE4 2000
+
 
 #ifdef	__cplusplus
 extern "C" {
