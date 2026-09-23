@@ -171,10 +171,11 @@ void OperatingSystemLoop(void) {
         case 0b10010:
         case 0b01001:
         case 0b01011:
-        case 0b10011:
+        case 0b10011: 
         case 0b11010:
         case 0b11001:
         case 0b11011:
+        case 0b10101:
         case 0b11111:
             PWMSetSpeedConsigne(-15, MOTEUR_DROIT);
             PWMSetSpeedConsigne(-15, MOTEUR_GAUCHE);
@@ -225,10 +226,12 @@ void OperatingSystemLoop(void) {
            PWMSetSpeedConsigne(15, MOTEUR_GAUCHE);
            break;
         case 0b11110:
+        case 0b01100:
            PWMSetSpeedConsigne(15, MOTEUR_DROIT);
            PWMSetSpeedConsigne(15, MOTEUR_GAUCHE);
            break;
         case 0b00111:
+        case 0b00110:
            PWMSetSpeedConsigne(-15, MOTEUR_DROIT);
            PWMSetSpeedConsigne(-15, MOTEUR_GAUCHE);
            break;
