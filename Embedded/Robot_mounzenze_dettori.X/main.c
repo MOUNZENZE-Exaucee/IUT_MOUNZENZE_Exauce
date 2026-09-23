@@ -17,6 +17,8 @@
 #include "main.h"
 unsigned char stateRobot;
 unsigned char nextStateRobot = 0;
+unsigned int captir =0b00000;
+
 
 int main(void) {
     /***********************************************************************************************///Initialisation oscillateur
@@ -64,21 +66,36 @@ int main(void) {
             float tensionADC0 = (3.3 * ADCValue0) / 4095;
             float tensionADC1 = (3.3 * ADCValue1) / 4095;
             float tensionADC2 = (3.3 * ADCValue2) / 4095;*/
-
+            captir=0b00000;
+            if (robotState.distanceTelemetreExGauche >= 30) {
+                LED_BLANCHE_1 = 0;
+            } else {
+                LED_BLANCHE_1 = 1;
+                captir=captir+0b10000;
+            }
             if (robotState.distanceTelemetreGauche >= 30) {
                 LED_BLEUE_1 = 0;
             } else {
                 LED_BLEUE_1 = 1;
+                captir=captir+0b01000;
             }
-            if (robotState.distanceTelemetreCentre >= 30) {
+            if (robotState.distanceTelemetreCentre >= 20) {
                 LED_ORANGE_1 = 0;
             } else {
                 LED_ORANGE_1 = 1;
+                captir=captir+0b00100;
             }
             if (robotState.distanceTelemetreDroit >= 30) {
                 LED_ROUGE_1 = 0;
             } else {
                 LED_ROUGE_1 = 1;
+                captir=captir+0b00010;
+            }
+            if (robotState.distanceTelemetreExDroit >= 30) {
+                LED_VERTE_1 = 0;
+            } else {
+                LED_VERTE_1 = 1;
+                captir=captir+0b00001;
             }
 
             ADCClearConversionFinishedFlag();
@@ -91,7 +108,7 @@ int main(void) {
 }
 
 void OperatingSystemLoop(void) {
-    switch (stateRobot) {
+    /*switch (stateRobot) {
         case STATE_ATTENTE:
             timestamp = 0;
             PWMSetSpeedConsigne(0, MOTEUR_DROIT);
@@ -144,6 +161,98 @@ void OperatingSystemLoop(void) {
         default:
             stateRobot = STATE_ATTENTE;
             break;
+    }*/
+    switch(captir)
+    {
+        case 0b00000:
+            PWMSetSpeedConsigne(-30, MOTEUR_DROIT);
+            PWMSetSpeedConsigne(30, MOTEUR_GAUCHE);
+            break;
+        case 0b10010:
+        case 0b01001:
+        case 0b01011:
+        case 0b10011:
+        case 0b11010:
+        case 0b11001:
+        case 0b11011:
+        case 0b11111:
+            PWMSetSpeedConsigne(-15, MOTEUR_DROIT);
+            PWMSetSpeedConsigne(-15, MOTEUR_GAUCHE);
+            break;
+        case 0b00100:
+            PWMSetSpeedConsigne(0, MOTEUR_DROIT);
+            PWMSetSpeedConsigne(20, MOTEUR_GAUCHE);
+            break;
+        case 0b01110:
+            PWMSetSpeedConsigne(0, MOTEUR_DROIT);
+            PWMSetSpeedConsigne(20, MOTEUR_GAUCHE);
+            break;
+        case 0b10001:
+            if(robotState.distanceTelemetreExGauche<robotState.distanceTelemetreExDroit){
+                PWMSetSpeedConsigne(-15, MOTEUR_DROIT);
+                PWMSetSpeedConsigne(30, MOTEUR_GAUCHE);
+            break;
+            }if(robotState.distanceTelemetreExGauche>robotState.distanceTelemetreExDroit){
+                PWMSetSpeedConsigne(-30, MOTEUR_DROIT);
+                PWMSetSpeedConsigne(15, MOTEUR_GAUCHE);
+            break;
+            }
+            PWMSetSpeedConsigne(-30, MOTEUR_DROIT);
+            PWMSetSpeedConsigne(30, MOTEUR_GAUCHE);
+            break;
+        case 0b01010: 
+            PWMSetSpeedConsigne(0, MOTEUR_DROIT);
+            PWMSetSpeedConsigne(20, MOTEUR_GAUCHE);
+            break;
+        case 0b11000:
+            PWMSetSpeedConsigne(0, MOTEUR_DROIT);
+            PWMSetSpeedConsigne(20, MOTEUR_GAUCHE);
+            break;
+        case 0b00011:
+            PWMSetSpeedConsigne(-20, MOTEUR_DROIT);
+            PWMSetSpeedConsigne(0, MOTEUR_GAUCHE);
+            break;
+        case 0b10000:
+            PWMSetSpeedConsigne(-15, MOTEUR_DROIT);
+            PWMSetSpeedConsigne(30, MOTEUR_GAUCHE);
+            break;
+        case 0b00001:
+            PWMSetSpeedConsigne(-30, MOTEUR_DROIT);
+            PWMSetSpeedConsigne(15, MOTEUR_GAUCHE);
+            break;
+        case 0b11100:
+           PWMSetSpeedConsigne(15, MOTEUR_DROIT);
+           PWMSetSpeedConsigne(15, MOTEUR_GAUCHE);
+           break;
+        case 0b11110:
+           PWMSetSpeedConsigne(15, MOTEUR_DROIT);
+           PWMSetSpeedConsigne(15, MOTEUR_GAUCHE);
+           break;
+        case 0b00111:
+           PWMSetSpeedConsigne(-15, MOTEUR_DROIT);
+           PWMSetSpeedConsigne(-15, MOTEUR_GAUCHE);
+           break;
+        case 0b01111:
+           PWMSetSpeedConsigne(-15, MOTEUR_DROIT);
+           PWMSetSpeedConsigne(-15, MOTEUR_GAUCHE);
+           break;
+        case 0b01000:
+            PWMSetSpeedConsigne(0, MOTEUR_DROIT);
+            PWMSetSpeedConsigne(20, MOTEUR_GAUCHE);
+            break;
+        case 0b00010:
+            PWMSetSpeedConsigne(-20, MOTEUR_DROIT);
+            PWMSetSpeedConsigne(0, MOTEUR_GAUCHE);
+            break;
+        case 0b10100:
+            PWMSetSpeedConsigne(0, MOTEUR_DROIT);
+            PWMSetSpeedConsigne(20, MOTEUR_GAUCHE);
+            break;  
+        case 0b00101:
+            PWMSetSpeedConsigne(-20, MOTEUR_DROIT);
+            PWMSetSpeedConsigne(0, MOTEUR_GAUCHE);
+            break;
+        
     }
 }
 
