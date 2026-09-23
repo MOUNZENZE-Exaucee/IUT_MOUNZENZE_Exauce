@@ -194,12 +194,12 @@ void OperatingSystemLoop(void) {
             break;
         case 0b10001:
             if(robotState.distanceTelemetreExGauche<robotState.distanceTelemetreExDroit){
-                PWMSetSpeedConsigne(-15, MOTEUR_DROIT);
+                PWMSetSpeedConsigne(-25, MOTEUR_DROIT);
                 PWMSetSpeedConsigne(30, MOTEUR_GAUCHE);
             break;
             }if(robotState.distanceTelemetreExGauche>robotState.distanceTelemetreExDroit){
                 PWMSetSpeedConsigne(-30, MOTEUR_DROIT);
-                PWMSetSpeedConsigne(15, MOTEUR_GAUCHE);
+                PWMSetSpeedConsigne(25, MOTEUR_GAUCHE);
             break;
             }
             PWMSetSpeedConsigne(-30, MOTEUR_DROIT);
@@ -218,12 +218,12 @@ void OperatingSystemLoop(void) {
             PWMSetSpeedConsigne(0, MOTEUR_GAUCHE);
             break;
         case 0b10000:
-            PWMSetSpeedConsigne(-15, MOTEUR_DROIT);
+            PWMSetSpeedConsigne(-25, MOTEUR_DROIT);
             PWMSetSpeedConsigne(30, MOTEUR_GAUCHE);
             break;
         case 0b00001:
             PWMSetSpeedConsigne(-30, MOTEUR_DROIT);
-            PWMSetSpeedConsigne(15, MOTEUR_GAUCHE);
+            PWMSetSpeedConsigne(25, MOTEUR_GAUCHE);
             break;
         case 0b11100:
         case 0b10100:
