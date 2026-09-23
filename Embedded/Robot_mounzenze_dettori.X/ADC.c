@@ -42,12 +42,12 @@ AD1CON4bits.ADDMAEN = 0; // DMA is not used
 //Configuration des ports
 /************************************************************/
 //ADC éutiliss : 8(B8)-9(B9)-10(B10)
-ANSELBbits.ANSB7 = 1;
+ANSELBbits.ANSB0 = 1;
 ANSELBbits.ANSB8 = 1;
 ANSELBbits.ANSB9 = 1;
 ANSELBbits.ANSB10 = 1;
 ANSELBbits.ANSB11 = 1;
-AD1CSSLbits.CSS7=1;
+AD1CSSLbits.CSS0=1;
 AD1CSSLbits.CSS8=1; // Enable AN8 for scan
 AD1CSSLbits.CSS9=1; // Enable AN9 for scan
 AD1CSSLbits.CSS10=1; // Enable AN10 for scan
