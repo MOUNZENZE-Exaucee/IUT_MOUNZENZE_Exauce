@@ -2,6 +2,19 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/C:/Github/IUT_MOUNZENZE_Exauce/Embedded/Robot_mounzenze_dettori.X/timer.c</file>
+            <file>file:/C:/Github/IUT_MOUNZENZE_Exauce/Embedded/Robot_mounzenze_dettori.X/PWM.h</file>
+            <file>file:/C:/Github/IUT_MOUNZENZE_Exauce/Embedded/Robot_mounzenze_dettori.X/Robot.c</file>
+            <file>file:/C:/Github/IUT_MOUNZENZE_Exauce/Embedded/Robot_mounzenze_dettori.X/ADC.c</file>
+            <file>file:/C:/Github/IUT_MOUNZENZE_Exauce/Embedded/Robot_mounzenze_dettori.X/main.c</file>
+            <file>file:/C:/Github/IUT_MOUNZENZE_Exauce/Embedded/Robot_mounzenze_dettori.X/IO.c</file>
+            <file>file:/C:/Github/IUT_MOUNZENZE_Exauce/Embedded/Robot_mounzenze_dettori.X/timer.h</file>
+            <file>file:/C:/Github/IUT_MOUNZENZE_Exauce/Embedded/Robot_mounzenze_dettori.X/main.h</file>
+            <file>file:/C:/Github/IUT_MOUNZENZE_Exauce/Embedded/Robot_mounzenze_dettori.X/PWM.c</file>
+            <file>file:/C:/Github/IUT_MOUNZENZE_Exauce/Embedded/Robot_mounzenze_dettori.X/Robot.h</file>
+            <file>file:/C:/Github/IUT_MOUNZENZE_Exauce/Embedded/Robot_mounzenze_dettori.X/ADC.h</file>
+            <file>file:/C:/Github/IUT_MOUNZENZE_Exauce/Embedded/Robot_mounzenze_dettori.X/IO.h</file>
+        </group>
     </open-files>
 </project-private>
