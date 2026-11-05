@@ -170,8 +170,8 @@ void OperatingSystemLoop(void) {
     switch(captir)
     {
         case 0b00000:
-            PWMSetSpeedConsigne(-30, MOTEUR_DROIT);
-            PWMSetSpeedConsigne(30, MOTEUR_GAUCHE);
+            PWMSetSpeedConsigne(-25, MOTEUR_DROIT);
+            PWMSetSpeedConsigne(25, MOTEUR_GAUCHE);
             break;
         
         
@@ -183,26 +183,33 @@ void OperatingSystemLoop(void) {
             break;
         case 0b00100:
         case 0b01110:
-        case 0b01010: 
+        case 0b01010:
+        case 0b10101:
             PWMSetSpeedConsigne(0, MOTEUR_DROIT);
             PWMSetSpeedConsigne(10, MOTEUR_GAUCHE);
             break;
         case 0b10001:
         case 0b11001:
         case 0b10011:
-        case 0b10101:
         case 0b11011:
+            if(robotState.distanceTelemetreCentre>=35){
             if((robotState.distanceTelemetreExGauche<robotState.distanceTelemetreExDroit)&&(robotState.distanceTelemetreExGauche!=robotState.distanceTelemetreExDroit)){
-                PWMSetSpeedConsigne(-25, MOTEUR_DROIT);
-                PWMSetSpeedConsigne(30, MOTEUR_GAUCHE);
-            break;
-            }if((robotState.distanceTelemetreExGauche>robotState.distanceTelemetreExDroit)&&(robotState.distanceTelemetreExGauche!=robotState.distanceTelemetreExDroit)){
-                PWMSetSpeedConsigne(-30, MOTEUR_DROIT);
+                PWMSetSpeedConsigne(-20, MOTEUR_DROIT);
                 PWMSetSpeedConsigne(25, MOTEUR_GAUCHE);
             break;
+            }else{if((robotState.distanceTelemetreExGauche>robotState.distanceTelemetreExDroit)&&(robotState.distanceTelemetreExGauche!=robotState.distanceTelemetreExDroit)){
+                PWMSetSpeedConsigne(-25, MOTEUR_DROIT);
+                PWMSetSpeedConsigne(20, MOTEUR_GAUCHE);
+            break;
+            }else{
+                PWMSetSpeedConsigne(-25, MOTEUR_DROIT);
+                PWMSetSpeedConsigne(25, MOTEUR_GAUCHE);
             }
-            PWMSetSpeedConsigne(-30, MOTEUR_DROIT);
-            PWMSetSpeedConsigne(30, MOTEUR_GAUCHE);
+            }
+            }else{
+            PWMSetSpeedConsigne(-15, MOTEUR_DROIT);
+            PWMSetSpeedConsigne(-15, MOTEUR_GAUCHE);
+            }
             break;
         case 0b11000:
             PWMSetSpeedConsigne(0, MOTEUR_DROIT);
@@ -213,12 +220,12 @@ void OperatingSystemLoop(void) {
             PWMSetSpeedConsigne(0, MOTEUR_GAUCHE);
             break;
         case 0b10000:
-            PWMSetSpeedConsigne(-25, MOTEUR_DROIT);
-            PWMSetSpeedConsigne(30, MOTEUR_GAUCHE);
+            PWMSetSpeedConsigne(-5, MOTEUR_DROIT);
+            PWMSetSpeedConsigne(25, MOTEUR_GAUCHE);
             break;
         case 0b00001:
-            PWMSetSpeedConsigne(-30, MOTEUR_DROIT);
-            PWMSetSpeedConsigne(25, MOTEUR_GAUCHE);
+            PWMSetSpeedConsigne(-25, MOTEUR_DROIT);
+            PWMSetSpeedConsigne(5, MOTEUR_GAUCHE);
             break;
         case 0b11100:
         case 0b10010:
