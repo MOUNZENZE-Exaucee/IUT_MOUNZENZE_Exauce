@@ -8,6 +8,9 @@
 #define LED_ROUGE_1 _LATJ11
 #define LED_VERTE_1 _LATH10
 
+//pin bouton
+#define INTER_2 _RH2 
+
 // Prototypes fonctions
 void InitIO();
 void LockIO();

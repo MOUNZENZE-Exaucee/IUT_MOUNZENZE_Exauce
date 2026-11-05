@@ -6,6 +6,7 @@
 #include "main.h"
 //Initialisation d?un timer 16 bits
 unsigned long timestamp; 
+
 void InitTimer1(void) {
     SetFreqTimer1(FREQUENCE1);
     //Timer1 pour horodater les mesures (1ms)
@@ -54,6 +55,9 @@ unsigned char toggle = 0;
 
 void __attribute__((interrupt, no_auto_psv)) _T3Interrupt(void) {
     IFS0bits.T3IF = 0; // Clear Timer3 Interrupt Flag
+    if(readcpts()<60){
+        incrcpts();
+    }
     /*if (toggle == 0) {
         PWMSetSpeedConsigne(20, MOTEUR_DROIT);
         PWMSetSpeedConsigne(20, MOTEUR_GAUCHE);

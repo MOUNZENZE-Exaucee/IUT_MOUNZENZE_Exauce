@@ -34,6 +34,8 @@
 
 void OperatingSystemLoop(void);
 void SetNextRobotStateInAutomaticMode();
+void incrcpts(void);
+int readcpts(void);
 
 
 #ifdef	__cplusplus

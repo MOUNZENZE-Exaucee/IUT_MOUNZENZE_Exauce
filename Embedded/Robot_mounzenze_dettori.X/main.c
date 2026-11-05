@@ -18,6 +18,7 @@
 unsigned char stateRobot;
 unsigned char nextStateRobot = 0;
 unsigned int captir =0b00000;
+unsigned int cpts=60;
 
 
 int main(void) {
@@ -43,6 +44,9 @@ int main(void) {
     /***********************************************************************************************/
 
     while (1) {
+        if(INTER_2==1){
+            cpts=0;
+        }
         /*LED_BLANCHE_1 = !LED_BLANCHE_1;
         LED_BLEUE_1 = !LED_BLEUE_1;
         LED_ORANGE_1 = ! LED_ORANGE_1 ;
@@ -67,31 +71,31 @@ int main(void) {
             float tensionADC1 = (3.3 * ADCValue1) / 4095;
             float tensionADC2 = (3.3 * ADCValue2) / 4095;*/
             captir=0b00000;
-            if (robotState.distanceTelemetreExGauche >= 30) {
+            if (robotState.distanceTelemetreExGauche >= 35) {
                 LED_BLANCHE_1 = 0;
             } else {
                 LED_BLANCHE_1 = 1;
                 captir=captir+0b10000;
             }
-            if (robotState.distanceTelemetreGauche >= 30) {
+            if (robotState.distanceTelemetreGauche >= 35) {
                 LED_BLEUE_1 = 0;
             } else {
                 LED_BLEUE_1 = 1;
                 captir=captir+0b01000;
             }
-            if (robotState.distanceTelemetreCentre >= 20) {
+            if (robotState.distanceTelemetreCentre >= 25) {
                 LED_ORANGE_1 = 0;
             } else {
                 LED_ORANGE_1 = 1;
                 captir=captir+0b00100;
             }
-            if (robotState.distanceTelemetreDroit >= 30) {
+            if (robotState.distanceTelemetreDroit >= 35) {
                 LED_ROUGE_1 = 0;
             } else {
                 LED_ROUGE_1 = 1;
                 captir=captir+0b00010;
             }
-            if (robotState.distanceTelemetreExDroit >= 30) {
+            if (robotState.distanceTelemetreExDroit >= 35) {
                 LED_VERTE_1 = 0;
             } else {
                 LED_VERTE_1 = 1;
@@ -162,6 +166,7 @@ void OperatingSystemLoop(void) {
             stateRobot = STATE_ATTENTE;
             break;
     }*/
+    if(cpts<60){
     switch(captir)
     {
         case 0b00000:
@@ -250,6 +255,10 @@ void OperatingSystemLoop(void) {
         
         
     }
+    }else{
+        PWMSetSpeedConsigne(0, MOTEUR_DROIT);
+        PWMSetSpeedConsigne(0, MOTEUR_GAUCHE);
+    }
 }
 
 void SetNextRobotStateInAutomaticMode() {
@@ -282,4 +291,10 @@ void SetNextRobotStateInAutomaticMode() {
     if (nextStateRobot != stateRobot - 1)
         stateRobot = nextStateRobot;
 }
+void incrcpts(void){
+    cpts=cpts+1;
+}
 
+int readcpts(void){
+    return cpts;
+}
