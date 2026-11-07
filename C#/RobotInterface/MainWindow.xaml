@@ -7,8 +7,27 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <GroupBox x:Name="Emission" Header="GroupBox" Margin="94,77,441,106" Background="#FFDDDDDD" BorderBrush="Black"/>
-        <GroupBox x:Name="Réception" Header="GroupBox" Margin="400,77,65,106" Background="#FFDDDDDD" BorderBrush="Black"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="30"/>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="30"/>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="30"/>
+        </Grid.ColumnDefinitions>
+        <GroupBox x:Name="Emission" Header="GroupBox" Background="#FFDDDDDD" BorderBrush="Black" Grid.Column="1" Grid.Row="1">
+            <TextBox x:Name="TexteBoxEmission" Background="{x:Null}" BorderBrush="{x:Null}" AcceptsReturn="True" TextWrapping="Wrap" KeyUp="TexteBoxEmission_KeyUp"/>
+        </GroupBox>
+        <GroupBox x:Name="Réception" Header="GroupBox" Background="#FFDDDDDD" BorderBrush="Black" Grid.Column="3" Grid.Row="1">
+            <TextBox x:Name="TextBoxReception" TextWrapping="Wrap" BorderBrush="{x:Null}" Margin="14,0,0,0" Background="{x:Null}" IsReadOnly="True" AcceptsReturn="True"/>
+        </GroupBox>
+        <Button x:Name="BouttonEnvoyer" Grid.Column="1" Content="Envoyer" Grid.Row="3" Width="105" Click="BouttonEnvoyer_Click"/>
 
     </Grid>
 </Window>
