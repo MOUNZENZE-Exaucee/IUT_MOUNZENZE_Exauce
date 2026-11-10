@@ -11,6 +11,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Media.TextFormatting;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using ExtendedSerialPort_NS;
 
 
 namespace RobotInterface
@@ -53,6 +54,12 @@ namespace RobotInterface
             TextBoxReception.Text = TextBoxReception.Text + "Reçu: " + TexteBoxEmission.Text;
 
             TexteBoxEmission.Text = null;
+        }
+
+        private void BouttonClear_Click(object sender, RoutedEventArgs e)
+        {
+            TexteBoxEmission.Text = "";
+            TextBoxReception.Text = "";
         }
     }
 
